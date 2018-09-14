@@ -29,4 +29,7 @@ Route::post('member','OrderingController@member');
 Route::post('create','OrderingController@create');
 Route::post('reserve','OrderingController@reserve');
 
+Route::post('submitrating', 'RatingController@store');
+
 Route::post('login','MenuController@login');
+

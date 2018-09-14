@@ -113,15 +113,25 @@ class OrderingController extends Controller
 	public function member(Request $request)
 	{
 		
-		$member = Member::where('username', $request->cred['username'])->first();
-		if (\Hash::check($request->cred['password'], $member->password))
+		$member = Member::where('username', $request->username)->first();
+
+		// return $request->username;
+		if ($member)
 		{
-			return response()->json($member);
+			if (\Hash::check($request->password, $member->password))
+			{
+				return response()->json($member);
+			}
+			else
+			{
+				return 'error';
+			}
 		}
 		else
 		{
-			return response()->json([]);
+			return 'error';
 		}
+		
 	}
 
 	public function create(Request $request)
