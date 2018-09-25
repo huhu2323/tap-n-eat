@@ -17,6 +17,12 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     use HasRoles;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
        $users = User::latest()->paginate();

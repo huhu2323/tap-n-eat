@@ -7,6 +7,9 @@ use App\User;
 
 class MenuController extends Controller
 {
+
+    
+
     public function login(Request $request)
     {
     	$user = User::where('username', $request->username)->first();

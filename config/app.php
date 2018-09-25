@@ -161,7 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+        //Laravel\Passport\PassportServiceProvider::class,
         Jadjoubran\LaravelAngular\Provider\LaravelServiceProvider::class,
 
     ],
@@ -214,7 +214,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Passport' => Laravel\Passport\PassportServiceProvider::class,
+        // 'Passport' => Laravel\Passport\PassportServiceProvider::class,
 
     ],
 

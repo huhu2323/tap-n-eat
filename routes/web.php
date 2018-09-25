@@ -14,8 +14,10 @@
 
 // this is the routes for the defaults
 Auth::routes();
+
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
+
 
 //this is the routes for modules
 Route::group(['prefix' => 'pos', 'middleware' => 'auth' , 'as' => 'pos.'], function() {

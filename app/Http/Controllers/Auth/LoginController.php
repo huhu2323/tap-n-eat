@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -52,7 +52,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect('login');
+        return redirect('/');
     }
 
     public function authenticated( Request $request, User $user ) {
