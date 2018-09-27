@@ -16,6 +16,21 @@
 					{!! $errors->has('name') ? '<span class="label label-danger">'.$errors->first('name').'</span>' : '' !!}
 				</div>
 				<div class="row">
+					<div class="col-md-8">
+						<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+							<label for="productprice">Image: </label>
+							<br>
+							<img src="{{ $category->image ? asset('assets/img/cat_img').'/'.$category->image : asset('assets/img/logo.jpg') }}" class="preview" style="width: 50%;">
+							<div class="input-group">
+								<label for="productprice" class="input-group-addon"><i class="fa fa-image"></i></label>
+								{!! Form::file('image', ['class' => 'form-control image', 'placeholder' => 'Input  Image here...', 'id' => 'productprice']) !!}
+							</div>
+							{!! $errors->has('image') ? '<span class="label label-danger">'.$errors->first('image').'</span>' : '' !!}
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
 							<label for="decription">Description: </label>
@@ -42,3 +57,24 @@
 	</div>
 </div>
 {!! Form::close() !!}
+@section('after-script')
+	<script type="text/javascript">
+		function readURL(input) {
+
+			if (input.files && input.files[0]) 
+			{
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+				$('.preview').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$(".image").change(function() {
+			readURL(this);
+		});
+	</script>
+@endsection

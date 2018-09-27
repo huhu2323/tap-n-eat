@@ -22,31 +22,29 @@
 									<th class="text-center" width="20%">Reserve Date:</th>
 									<th class="text-center" width="20%">Reserve Time:</th>
 									<th class="text-center" width="20%">Action</th>
-
 								</tr>
 							</thead>
 							<div class="panel-body no-padding bg-primary text-center">
 								<tbody>
 									@if ( count($reservations) )
 										@foreach ($reservations as $reservation)
-											<tr class="row-data" data-id="{{$reservation->id}}" data-name="{{$reservation->name}}">
+											<tr  data-id="{{$reservation->id}}" data-name="{{$reservation->name}}">
 												<td><span class="column-name">{{ $reservation->member_name }}</span>
 												</td>
 												<td class="text-center"> {{ $reservation->table_number }} </td>
 												<td class="text-center"> {{ $reservation->total_person }} </td>
 												<td class="text-center"> {{ $reservation->reserve_date->toFormattedDateString() }} </td>
 												<td class="text-center"> {{ $reservation->reserve_time }} </td>
-												<td><a href="#" ><i class="fa fa-check" style="color:green" ></i></a>
-												<a href="#" ><i class="fa fa-ban" style="color:red"></i></a>
+												<td><a href="{{ route('reservation.accept') }}" ><i class="fa fa-check" style="color:green" ></i></a>
+												<a href="{{ route('reservation.reject') }}" ><i class="fa fa-ban" style="color:red"></i></a>
 												</td>
-
 											</tr>
 
 										@endforeach
 
 									@else
 										<tr>
-											<td colspan="5" class="text-center" style="font-size: 30px"> Oops! There's nothing here. </td>
+											<td colspan="6" class="text-center" style="font-size: 30px"> Oops! There's nothing here. </td>
 										</tr>
 									@endif
 								</tbody>
@@ -57,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-
+<!-- 
 	<div class="panel panel-headline" style="">
 		<div class="panel-heading">
 			<h3 class="panel-title"><b>Table Mapping</b></h3>
@@ -79,7 +77,7 @@
 			</div>
 		</div>
 	</div>
-	
+	 -->
 @endsection
 
 @section ('after-script')
