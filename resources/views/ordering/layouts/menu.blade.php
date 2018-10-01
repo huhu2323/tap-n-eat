@@ -2,7 +2,7 @@
 <div id="container-floating">
   <div class="nd5 nds" data-toggle="tooltip" data-placement="left" data-original-title="Simone">
     <img class="reminder">
-    <p class="letter"><a href="{{route('ordering.product') }}" class="fcolor">M</a></p>
+    <p class="letter"><a href="#" class="fcolor">M</a></p>
   </div>
 
   <div class="nd4 nds" data-toggle="tooltip" data-placement="left" data-original-title="contract@gmail.com">

@@ -52,29 +52,30 @@
 								<tbody>
 									@if ( count($orders) )
 										@foreach ($orders as $order)
-											<tr class="row-data" data-id="{{$order->id}}" data-name="{{$order->name}}">
+											<tr  data-id="{{$order->id}}" data-name="{{$order->name}}">
 												<td><span class="column-name">{{ $order->name }}</span> 
 												</td>
 												<td class="text-center"> {{ $order->member_id }} </td>
 
-												<td <a href="#prod1" data-toggle="collapse" class="collapsed"><span>Products</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-													<div id="prod1" class="collapse">
-												<ul>
-													@foreach ($orders as $order)
-													<p> {{ $order->name }} </p>
-													@endforeach
-												</ul>
+												<td <a href="#prod1{{$order->id}}" data-toggle="collapse" class="collapsed"><span>Products</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+													<div id="prod1{{$order->id}}" class="collapse">
+														<table>
+															@foreach ($order->orderItems as $item)
+															<tr>
+																<td> &nbsp;&nbsp; {{ $item->product->name }} </td> 
+																<td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( {{ $item->quantity }} ) </td> 
+																<td> &nbsp;&nbsp; Price:&nbsp; &#8369; {{ $item->product->price }}</td>
+															</tr>
+															@endforeach
+														</table>
 												</div>
 												</td>
-
-												<td> {{ $order->quantity }} </td>
-												<td> {{ $order->price }} </td>
-												<td> {{ $order->total_price }} </td>
+												<td> &#8369;{{ $order->total_price }}.00 </td>
 											</tr>
 										@endforeach
 									@else
 										<tr>
-											<td colspan="5" class="text-center" style="font-size: 30px"> Oops! There's nothing here. </td>
+											<td colspan="6" class="text-center" style="font-size: 30px"> Oops! There's nothing here. </td>
 										</tr>
 									@endif
 								</tbody>

@@ -21,7 +21,7 @@ class CreateReservationsTable extends Migration
             $table->integer('table_avail');
             $table->dateTime('reserve_date');
             $table->time('reserve_time');
-            $table->boolean('paid');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

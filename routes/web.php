@@ -115,4 +115,6 @@ Route::group(['prefix' => 'cashier', 'middleware' => 'auth' , 'as' => 'cashier.'
 
 Route::group(['prefix' => 'reservation', 'middleware' => 'auth' , 'as' => 'reservation.'], function() {
 	Route::get('/', 'ReservationController@index')->name('index');
+	Route::get('accept', 'ReservationController@accept')->name('accept');
+	Route::get('reject', 'ReservationController@reject')->name('reject');
 });
