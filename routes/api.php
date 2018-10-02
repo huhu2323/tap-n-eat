@@ -33,6 +33,7 @@ Route::post('reserve','OrderingController@reserve');
 Route::get('kitchen','OrderingController@kitchen');
 
 
+
 Route::post('submitrating', 'RatingController@store');
 Route::get('{product}/comments', 'RatingController@index');
 Route::get('{product}/calculate', 'RatingController@calculateRating');

@@ -59,14 +59,14 @@ class OrderingController extends Controller
 	{
 		$success = true;
 		$order = new Order;
-		$order->name = $request->order['name'];
 		$order->total_price = $request->order['total_price'];
 		$order->paid = 1;
 		$order->status = 0;
+		$order->table_number = 0;
 		$order->member_id = $request->order['member_id'];
 		if ($order->save())
 		{
-			foreach ($request->cart as $key => $value) {
+			foreach ($request->orderItem as $key => $value) {
 				$orderItem = new OrderItem;
 				$orderItem->product_id = $value["product_id"];
 				$orderItem->order_id = $order->id;

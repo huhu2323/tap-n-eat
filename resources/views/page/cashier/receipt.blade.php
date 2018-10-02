@@ -29,7 +29,7 @@
 						<input class="form-control inpt" style="width: 300px" placeholder="Please input payment here.." type="text" name="Cash" id="cash">
 						<h4>Change : <label id="change">  </label> </h4>
 
-						<button type="submit" class="btn btn-primary"> Print </button>
+						<a href="{{ route('cashier.receipt', $orders) }}" type="submit" class="btn btn-primary"> Print </a>
 					</div>
 				</div>
 			</div>

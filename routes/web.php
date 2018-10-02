@@ -106,13 +106,11 @@ Route::group(['prefix' => 'ordering', 'as' => 'ordering.'], function() {
 	
 });
 
-Route::group(['prefix' => 'api', 'middleware' => 'guest'], function() {
-   
 
-});
 Route::group(['prefix' => 'cashier', 'middleware' => 'auth' , 'as' => 'cashier.'], function() {
 	Route::get('/', 'CashierController@index')->name('index');
 	Route::get('{cashier}/pay', 'CashierController@pay')->name('pay');
+	Route::get('{order}/rec', 'CashierController@receipt')->name('receipt');
 });
 
 Route::group(['prefix' => 'reservation', 'middleware' => 'auth' , 'as' => 'reservation.'], function() {

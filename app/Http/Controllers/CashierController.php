@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Session;
+use PDF; //don’t forget thisView('viewname');
+use Illuminate\Support\Facades\Auth as Auth;
+use Illuminate\Support\Facades\File as File;
+use Illuminate\Support\Facades\Session as Session;
 
 class CashierController extends Controller
 {
@@ -59,5 +59,11 @@ class CashierController extends Controller
 
       return view('page.cashier.receipt',compact('orders'));
     }	
+
+    public function receipt(Order $order)
+    {
+      $pdf = PDF::loadView('pdf.receipt', $order)->setPaper('a4', 'portrait')->setWarnings(false);
+      return $pdf->download('invoice.pdf');
+    }
 
 }
