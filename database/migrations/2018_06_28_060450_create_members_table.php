@@ -24,7 +24,7 @@ class CreateMembersTable extends Migration
             $table->text('address');
             $table->string('contact');
             $table->double('credit');
-            $table->binary('image');
+            $table->string('image');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

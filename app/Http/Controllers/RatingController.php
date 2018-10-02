@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Product;
 use App\Rating;
+use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
+
+	public function index(Product $product) {
+		return $comments = $product->firstFive;
+	}
+
 	public function store(Request $request)
 	{
 		$rating = new Rating;
@@ -22,5 +28,10 @@ class RatingController extends Controller
 		{
 			return 'error';
 		}
+	}
+
+	public function calculateRating(Product $product)
+	{
+		return response()->json($product->ratingOnly()->avg());
 	}
 }

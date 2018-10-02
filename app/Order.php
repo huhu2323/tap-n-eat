@@ -4,6 +4,7 @@ namespace App;
 
 use App\Member;
 use App\OrderItem;
+use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -17,4 +18,5 @@ class Order extends Model
     {
     	return $this->hasMany(OrderItem::class);
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -114,7 +115,8 @@ class CategoryController extends Controller
             return abort(403);
         }
         Session::flash('module', 'product');
-        if (count($category->product))
+
+        if (Product::withTrashed()->where('category_id', $category->id)->get()->count())
         {  
             Session::flash('warning', ['title' => 'Warning!', 'msg' => 'Unable to delete category with product(s) registered!']);
             return redirect()->route('category.index');

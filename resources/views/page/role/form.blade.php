@@ -11,14 +11,14 @@
 				<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 					<div class="input-group">
 						<label for="rolename" class="input-group-addon input-lg">Role Name: </label>
-						{!! Form::text('name', null, ['class' => 'form-control input-lg', 'placeholder' => 'Input Role Name here...', 'id' => 'rolename']) !!}
+						{!! Form::select('name', null, ['class' => 'form-control input-lg', 'placeholder' => 'Input Role Name here...', 'id' => 'rolename']) !!}
 					</div>
 				{!! $errors->has('name') ? '<span class="label label-danger">'.$errors->first('name').'</span>' : '' !!}
 				</div>
 				<h4><span class="text-danger">* Please select the permissions for the role.</h4>
 				<div class="row">
 					<div class="col-md-3">
-						<label for="">Cashier:</label>
+						<label for="">Account Type:</label>
 					</div>
 					<div class="col-md-9">
 						<div class="form-group">

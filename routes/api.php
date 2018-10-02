@@ -22,14 +22,20 @@ Route::middleware('auth:api')->group(function() {
 });
 
 Route::get('products', 'OrderingController@products');
+Route::get('{category}/products', 'OrderingController@filteredProducts');
 Route::get('productscategories/{id}', 'OrderingController@productsCategories');
 Route::get('categories', 'OrderingController@categories');
 Route::post('orderproduct', 'OrderingController@orderProduct');
+Route::get('orders', 'OrderingController@index');
 Route::post('member','OrderingController@member');
 Route::post('create','OrderingController@create');
 Route::post('reserve','OrderingController@reserve');
+Route::get('kitchen','OrderingController@kitchen');
+
 
 Route::post('submitrating', 'RatingController@store');
+Route::get('{product}/comments', 'RatingController@index');
+Route::get('{product}/calculate', 'RatingController@calculateRating');
+
 
 Route::post('login','MenuController@login');
-

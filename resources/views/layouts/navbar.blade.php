@@ -17,19 +17,7 @@
 						<li><a href="{{ route('logout') }}"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 					</ul>
 				</li>
-			</ul>{{-- 
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-						<span class="badge bg-danger noti-count"></span>
-						<i class="fa fa-bell-o"></i>
-						&nbsp; &nbsp;Notifications
-					</a>
-					<ul class="dropdown-menu notifications">
-						<li><a href="#" class="more">See all notifications</a></li>
-					</ul>
-				</li>
-			</ul> --}}
+			</ul>
 		</div>
 	</div>
 </nav>

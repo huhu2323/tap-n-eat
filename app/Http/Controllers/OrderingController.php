@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Member;
 use App\Order;
 use App\OrderItem;
 use App\Product;
-use App\Member;
+use App\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -27,8 +28,9 @@ class OrderingController extends Controller
 	{
 		$orders = Order::whereDate('created_at', Carbon::today())
 		->where('status', '0')
+		->with(['orderItems', 'orderItems.product'])
 		->get();
-		return view('ordering.page.kitchen', compact('orders'));
+		return response()->json($orders);
 	}
 
 	public function product()
@@ -162,6 +164,12 @@ class OrderingController extends Controller
 		}
 	}
 
+	public function index()
+	{
+		$orders = Order::latest()->with('orderItems')->get();
+		dd($orders);
+	}
+
 	public function reserve(Request $request)
 	{
 		$success = true;
@@ -184,6 +192,11 @@ class OrderingController extends Controller
 		{
 			return response()->json('failed');
 		}
+	}
+
+	public function filteredProducts(Category $category)
+	{
+		return response()->json($category->products());
 	}
 
 }

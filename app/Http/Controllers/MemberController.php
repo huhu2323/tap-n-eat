@@ -191,7 +191,7 @@ class MemberController extends Controller
         {
             return abort(403);
         }
-        $member = Member::onlyTrashed()->find($id);
+        $member = Member::onlyTrashed()->findOrFail($id);
         if (!empty($member)) {
             Session::flash( 'success', ['title' => 'Delete Successful!', 'msg' => $member->name.' was deleted!' ] );
             File::delete('assets/img/member_img/' . $member->image);
