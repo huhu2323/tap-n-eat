@@ -15,16 +15,16 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rfid');
+            $table->string('rfid')->nullable();
             $table->string('username');
             $table->string('password');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->text('address');
-            $table->string('contact');
+            $table->text('address')->nullable();
+            $table->string('contact')->nullable();
             $table->double('credit');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

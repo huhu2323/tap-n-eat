@@ -48,16 +48,16 @@ class CashierController extends Controller
          return view('page.cashier.index', compact('orders'));
     }
 
-     public function pay($id)
+    public function pay($id)
     {
       if (!Auth::user()->can('cashier'))
         {
             return abort(403);
         }
-    	$orders = Order::find($id);
-    	Session::flash('module', 'cashier');
+      $orders = Order::find($id);
+      Session::flash('module', 'cashier');
 
-     return view('page.cashier.receipt',compact('orders'));
+      return view('page.cashier.receipt',compact('orders'));
     }	
 
 }

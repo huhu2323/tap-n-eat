@@ -11,6 +11,7 @@ use App\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class OrderingController extends Controller
 {
@@ -112,7 +113,7 @@ class OrderingController extends Controller
 		return response()->json($products);
 	}
 
-	public function member(Request $request)
+	public function login(Request $request)
 	{
 		
 		$member = Member::where('username', $request->username)->first();
@@ -138,30 +139,29 @@ class OrderingController extends Controller
 
 	public function create(Request $request)
 	{
+		
+		$validator =  Validator::make($request->all(), [
+	        'username' => 'required|unique:members',
+			'password' => 'required',
+			'first_name' => 'required',
+			'last_name' => 'required'
+	    ]);
+
+		if ($validator->fails()) {    
+		    return response()->json($validator->messages(), 200);
+		}
+
 		$success = true;
 		$member = new Member;
-		$member->username = $request->cred['username'];
-		$member->password = $request->cred['password'];
-		$member->rfid = $request->cred['rfid'];
-		$member->first_name = $request->cred['fname'];
-		$member->middle_name = $request->cred['mname'];
-		$member->last_name = $request->cred['lname'];
-		$member->address = $request->cred['address'];
-		$member->contact = $request->cred['contact'];
-		
-
-		if (!$member->save()) {
-			$success = false;
+		$member->username = $request->username;
+		$member->password = bcrypt($request->password);
+		$member->first_name = $request->first_name;
+		$member->last_name = $request->last_name;
+		$member->credit = 0;
+		if ($member->save()) {
+			return response()->json(['success' => $member]);
 		}
-
-		if ($success)
-		{
-			return response()->json('success');
-		}
-		else
-		{
-			return response()->json('failed');
-		}
+		return response()->json('failed');
 	}
 
 	public function index()
@@ -172,25 +172,29 @@ class OrderingController extends Controller
 
 	public function reserve(Request $request)
 	{
+		$validator =  Validator::make($request->all(), [
+			'member_id' => 'required',
+			'total_person' => 'required',
+			'reserve_date' => 'required',
+			'reserve_time' => 'required'
+	    ]);
+
+		if ($validator->fails()) {    
+		    return response()->json($validator->messages(), 200);
+		}
+
 		$success = true;
 		$reserve = new Reservation;
-		$reserve->table_number = $request->cred['table_number'];
-		$reserve->member_name = $request->cred['member_name'];
-		$reserve->total_person = $request->cred['member_name'];
-		$reserve->table_avail = $request->cred['table_avail'];
-		$reserve->reserve_date = $request->cred['reserve_date'];
-		$reserve->reserve_time = $request->cred['reserve_time'];
-		$reserve->reserve_time = 1;
-		if (!$reserve->save()) {
-			$success = false;
-		}
-		if ($success)
-		{
-			return response()->json('success');
-		}
-		else
-		{
-			return response()->json('failed');
+		$reserve->table_number = 0;
+		$reserve->transaction = $request->transaction;
+		$reserve->member_id = $request->member_id;
+		$reserve->total_person = $request->total_person;
+		$reserve->table_avail = true;
+		$reserve->reserve_date = $request->reserve_date;
+		$reserve->reserve_time = $request->reserve_time;
+		$reserve->status = false;
+		if ($reserve->save()) {
+			return response()->json(['success' => $reserve]);
 		}
 	}
 

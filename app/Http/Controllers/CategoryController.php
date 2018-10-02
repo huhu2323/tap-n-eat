@@ -126,22 +126,19 @@ class CategoryController extends Controller
         {
             return abort(403);
         }
-<<<<<<< HEAD
         Session::flash('module', 'product');
-
-        if (Product::withTrashed()->where('category_id', $category->id)->get()->count())
-=======
-        Session::flash('module', 'category');
-        $ptrashed = Product::onlyTrashed()->where('category_id', $category->id)->get()->count();
-        if (count($category->product) || $ptrashed)
->>>>>>> dc58132c518eebfb3436797a9bd2f4b9a47a1489
-        {  
-            Session::flash('warning', ['title' => 'Warning!', 'msg' => 'Unable to delete category with product(s) registered!']);
+        $hasTrashed = Product::onlyTrashed()->where('category_id', $category->id);
+        if ($category->product || $hasTrashed)
+        {
+            Session::flash('warning', ['title' => 'Error!', 'msg' => 'Category: '.$category->name.' has registered product!']);
             return redirect()->route('category.index');
         }
-        $oldname = $category->name;
-        $category->delete();
-        Session::flash('success', ['title' => 'Success!', 'msg' => 'Category: '.$oldname.' was deleted!']);
-        return redirect()->route('category.index');
+        else
+        {
+            Session::flash('success', ['title' => 'Success!', 'msg' => 'Category: '.$category->name.' was deleted!']);
+            $category->delete();
+            return redirect()->route('category.index');
+        }
+
     }
 }

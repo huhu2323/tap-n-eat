@@ -10,34 +10,32 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel-body">
-				<div class="panel panel-body">
-					<h4> Member Id: &nbsp;&nbsp;&nbsp; {{ $orders->member_id }}  </h4>
-					<h4> Name: &nbsp;&nbsp;&nbsp; {{ $orders->name }} </h4>
-					
+					<div class="panel panel-body" style="border: 5px dashed black;">
+						<h4> Customer: &nbsp;&nbsp;&nbsp; {{ $orders->member ? $orders->member->username : 'Guest'}}  
+						</h4>
 
-						<table>
+						<h4>Orders:</h4>
+						<ul>
 							@foreach($orders->orderItems as $items)
-							<tr style="font-size: 18px" >
-								<td>{{ $items->product->name }}</td>
-								<td> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{{ $items->quantity }}</td>
-								<td> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{{ $items->product->price }}</td>
-							</tr>
+							<li>
+								{{ $items->product->name }} &times; {{ $items->quantity }} (&#8369; {{$items->quantity * $items->product->price}})
+							</li>
 							@endforeach
-						</table>
+						</ul>
 
-					<h4> Total Price: &nbsp;&nbsp;&nbsp; &#8369; {{ $orders->total_price }} </h4>
+						<h4> Total Price: &#8369; {{ $orders->total_price }} </h4>
+						<input type="hidden" id="total-value" value="{{ $orders->total_price }}">
+						<h4>Cash: </h4>
+						<input class="form-control inpt" style="width: 300px" placeholder="Please input payment here.." type="text" name="Cash" id="cash">
+						<h4>Change : <label id="change">  </label> </h4>
 
-					<h4>Cash: &nbsp;&nbsp;<input type="text" name="Cash" id="cash"></h4>
-					<h4>Change : <label>  </label> </h4>
-				</div>
-				<button type="submit"> Print </button>
+						<button type="submit" class="btn btn-primary"> Print </button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	
-	
+	@include('layouts.notification')
 @endsection
 
-@include ('layouts.notification')

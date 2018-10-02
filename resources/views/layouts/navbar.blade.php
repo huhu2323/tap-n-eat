@@ -23,30 +23,6 @@
 </nav>
 
 	<script type="text/javascript">
-	 setInterval(function fetchOrders()
-	{
-	 	$.ajax({
-		url: '{{ route("ordering.orders") }}',
-		method: 'get',
-		data: { sample: 'asdas' },
-		success: function(e) {
-			var orders = JSON.parse(e);
-			var contents = "";
-			$('.noti-count').html(orders.length);
-
-			$.each(orders, function( index, value ) {
-					let user = "";
-
-					if (value.member_id == 0)
-					{
-						user = "Guest";
-					}
-	 				contents += '<li><a href="#" class="notification-item"><span class="dot bg-success"></span>' + user + ' placed an order.</a></li>';
-				});
-				contents += '<li><a href="#" class="more">See all notifications</a></li>';
-				$('.notifications').html(contents);
-			}
-		});
-	}, 1000);
+	 
 
 	</script>

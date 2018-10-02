@@ -449,4 +449,16 @@ $(document).ready( function() {
 			}
 		});
 	});
+
+	$('#cash').keyup(function() {
+		if ($(this).val() == "")
+		{
+			$('#change').text("");
+		}
+		else
+		{
+			$('#change').text($(this).val() - $('#total-value').val());
+		}
+		console.log($(this).val() - $('#total-value').val());
+	});
 });

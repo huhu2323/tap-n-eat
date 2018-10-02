@@ -27,7 +27,7 @@ Route::get('productscategories/{id}', 'OrderingController@productsCategories');
 Route::get('categories', 'OrderingController@categories');
 Route::post('orderproduct', 'OrderingController@orderProduct');
 Route::get('orders', 'OrderingController@index');
-Route::post('member','OrderingController@member');
+Route::post('member','OrderingController@login');
 Route::post('create','OrderingController@create');
 Route::post('reserve','OrderingController@reserve');
 Route::get('kitchen','OrderingController@kitchen');

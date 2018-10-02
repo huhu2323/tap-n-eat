@@ -40,9 +40,9 @@
 							<input type="hidden" class="selected-input" data-module="category" data-id="" data-name="" data-link="{{ route('home') }}">
 							<thead>
 								<tr>
-									<th width="50%">Name:</th>
-									<th class="text-center" width="13%">Member Id:</th>
-									<th width="8%">Action :</th>
+									<th>Table No.:</th>
+									<th class="text-center">Customer</th>
+									<th>Action :</th>
 								</tr>
 							</thead>
 							<div class="panel-body no-padding bg-primary text-center">
@@ -50,9 +50,9 @@
 									@if ( count($orders) )
 										@foreach ($orders as $order)
 											<tr class="row-data" data-id="{{$order->id}}" data-name="{{$order->name}}">
-												<td><span class="column-name">{{ $order->name }}</span> 
+												<td><span class="column-name">{{ $order->table_number }}</span> 
 												</td>
-												<td class="text-center"> {{ $order->member_id }} </td>
+												<td class="text-center"> {{ $order->member ? $order->member->username : "Guest" }} </td>
 												<td><a href="{{ route('cashier.pay', $order->id) }}">
 														<i class="fa fa-credit-card" style="color:green">&nbsp;</i> Pay
 													</a></td>

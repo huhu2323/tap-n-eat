@@ -43,16 +43,16 @@
 				</li>
 				@endcan
 
-				@can ('cashier', 'chef')
-				<li>
-					<a href="{{ route('cashier.index') }}" {{ session('module') == 'cashier' ? 'class=active' : '' }} ><i class="fa fa-cart-arrow-down"></i> <span>Cashier</span></a>
-				</li>
-				@endcan
 
 				<li>
 					<a href="{{ route('reservation.index') }}" {{ session('module') == 'reservation' ? 'class=active' : '' }} ><i class="fa fa-ticket"></i> <span>Reservation</span></a>
 				</li>
 				
+				@can ('cashier')
+				<li>
+					<a href="{{ route('cashier.index') }}" {{ session('module') == 'cashier' ? 'class=active' : '' }} ><i class="fa fa-money"></i> <span>Cashier</span></a>
+				</li>
+				@endcan
 				
 				
 				@can ('view-user', 'view-role')
