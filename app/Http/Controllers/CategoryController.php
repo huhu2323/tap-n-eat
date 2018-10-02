@@ -64,12 +64,24 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1048|dimensions:max_width=100,max_height=100',
         ]);
 
         $category = new Category;
         $category->name = $request->name;
         $category->description = $request->description;
         $category->save();
+
+        if ($request->file('image')){
+                $fileName = date('ydmhis').'_'.$request->image->getClientOriginalName();
+                $file = $request->file('image');
+                $category->image = $fileName;
+
+                if ($category->save())
+                {
+                    $file->move('assets/img/cat_img', $fileName);
+                }
+            }
 
         Session::flash('module', 'product');
         Session::flash('success', ['title' => 'Success!', 'msg' => 'Category: '.$category->name.' was created!']);
@@ -114,9 +126,15 @@ class CategoryController extends Controller
         {
             return abort(403);
         }
+<<<<<<< HEAD
         Session::flash('module', 'product');
 
         if (Product::withTrashed()->where('category_id', $category->id)->get()->count())
+=======
+        Session::flash('module', 'category');
+        $ptrashed = Product::onlyTrashed()->where('category_id', $category->id)->get()->count();
+        if (count($category->product) || $ptrashed)
+>>>>>>> dc58132c518eebfb3436797a9bd2f4b9a47a1489
         {  
             Session::flash('warning', ['title' => 'Warning!', 'msg' => 'Unable to delete category with product(s) registered!']);
             return redirect()->route('category.index');

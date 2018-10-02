@@ -16,9 +16,22 @@ class ReservationController extends Controller
 	
     public function index()
     {
-      $reservations = Reservation::all();
+      $reservations = Reservation::latest()->get();
       Session::flash('module', 'reservation');
       return view('page.reservation.index',compact('reservations'));
     }
+    public function accept()
+    {
+      $reservations = Reservation::latest()->get();
+      Session::flash('module', 'reservation');
+      return redirect()->route('reservation.index');
 
+    }
+    public function reject()
+    {
+      $reservations = Reservation::latest()->get();
+      Session::flash('module', 'reservation');
+      return redirect()->route('reservation.index');
+
+    }
 }
