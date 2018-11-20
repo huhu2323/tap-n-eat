@@ -113,8 +113,6 @@ class ProductController extends Controller
                 }
             }
 
-
-
         Session::flash('module', 'product');
         Session::flash('success', ['title' => 'Success!', 'msg' => 'Product was saved!']);
         return redirect()->route('product.index');

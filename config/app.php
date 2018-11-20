@@ -163,7 +163,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         //Laravel\Passport\PassportServiceProvider::class,
         Jadjoubran\LaravelAngular\Provider\LaravelServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 

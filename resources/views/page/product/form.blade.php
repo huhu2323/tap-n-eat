@@ -64,6 +64,16 @@
 						</div>
 					</div>
 				</div>
+				<div class="clearfix"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+							<label for="decription">3D Link: </label>
+							{!! Form::textarea('link', null, ['class' => 'form-control', 'placeholder' => 'Input Sketchfab embed...', 'id' => 'decription', 'rows' => '4']) !!}
+							{!! $errors->has('description') ? '<span class="label label-danger">'.$errors->first('description').'</span>' : '' !!}
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
