@@ -40,3 +40,9 @@ Route::get('{product}/calculate', 'RatingController@calculateRating');
 
 
 Route::post('login','MenuController@login');
+
+Route::post('sendsupport', 'SupportController@send');
+Route::get('fetchsupport', 'SupportController@fetch');
+
+Route::get('fetchsurvey', 'SurveyController@fetchSurvey');
+Route::post('sendsurvey', 'SurveyController@sendSurvey');

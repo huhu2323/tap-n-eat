@@ -118,3 +118,12 @@ Route::group(['prefix' => 'reservation', 'middleware' => 'auth' , 'as' => 'reser
 	Route::get('accept', 'ReservationController@accept')->name('accept');
 	Route::get('reject', 'ReservationController@reject')->name('reject');
 });
+
+Route::group(['prefix' => 'survey', 'middleware' => 'auth' , 'as' => 'survey.'], function() {
+	Route::get('/', 'SurveyController@index')->name('index');
+	Route::get('new', 'SurveyController@create')->name('create');
+	Route::post('new', 'SurveyController@store')->name('create');
+	Route::get('{survey}/edit', 'SurveyController@edit')->name('edit');
+	Route::post('{survey}/edit', 'SurveyController@storeEdit')->name('edit');
+	Route::get('{survey}/destroy', 'SurveyController@destroy')->name('destroy');
+});

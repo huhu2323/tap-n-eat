@@ -31,17 +31,23 @@ $(document).ready( function() {
 		$(this).find('.hidden-menu').addClass('hide');
 	});
 
-	$('.row-data').on('click', function () {
+	$('.row-data').on('click', function (e) {
 
-		$('.row-data').removeClass('selected-row');
-		$(this).addClass('selected-row');
+		if( $(e.target).closest('.comment-btn').length === 0)
+		{
+			console.log(e.target);
+			$('.row-data').removeClass('selected-row');
+			$(this).addClass('selected-row');
 
-		$('.hidden-menu').find('a').removeClass('text-white');
-		$(this).find('.hidden-menu').find('a').addClass('text-white');
+			$('.hidden-menu').find('a').removeClass('text-white');
+			$(this).find('.hidden-menu').find('a').addClass('text-white');
 
-		$('.selected-input').attr('data-id', $(this).attr('data-id'));
-		$('.selected-input').attr('data-name', $(this).attr('data-name'));
+			$('.selected-input').attr('data-id', $(this).attr('data-id'));
+			$('.selected-input').attr('data-name', $(this).attr('data-name'));
+		}
 	});
+
+
 
 	$('.action-edit').on('click', function () {
 		var selectedInput = $('.selected-input');

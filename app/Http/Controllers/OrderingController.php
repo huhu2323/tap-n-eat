@@ -57,6 +57,7 @@ class OrderingController extends Controller
 
 	public function orderProduct(Request $request)
 	{
+		
 		$success = true;
 		$order = new Order;
 		$order->total_price = $request->order['total_price'];

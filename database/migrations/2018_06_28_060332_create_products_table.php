@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->double('price');
             $table->text('description');
-            $table->text('link');
+            $table->text('link')->nullable();
             $table->boolean('available');
             $table->text('image')->nullable();
             $table->timestamp('deleted_at')->nullable();

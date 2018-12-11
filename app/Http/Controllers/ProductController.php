@@ -100,6 +100,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->category_id = $request->category;
         $product->available = 1;
+        $product->link = $request->link;
         $product->save();
         
         if ($request->file('image')){
@@ -179,7 +180,8 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->category_id = $request->category;
-        $product->price = $request->price; 
+        $product->price = $request->price;
+        $product->link = $request->link; 
         $product->available = 1;
         $product->save();
             

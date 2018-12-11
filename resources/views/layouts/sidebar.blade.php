@@ -27,7 +27,7 @@
 					<div id="subPages1" class="collapse {{ session('module') == 'product' ? 'in' : '' }}">
 						<ul class="nav">
 							@can ('view-pcategory')
-							<li><a href="{{ route('category.index') }}"><i class=" fa fa-th-large"></i> Categories</a></li>
+							<li><a href="{{ route('category.index') }}"><i class="fa fa-th-large"></i> Categories</a></li>
 							@endcan
 							@can ('view-product')
 							<li><a href="{{ route('product.index') }}"><i class="icon-submenu lnr lnr-dinner"></i> Products</a></li>
@@ -36,6 +36,10 @@
 					</div>
 				</li>
 				@endcan
+
+				<li>
+					<a href="{{ route('survey.index') }}" {{ session('module') == 'survey' ? 'class=active' : '' }} ><i class="fa fa-list"></i> <span>Survey</span></a>
+				</li>
 				
 				@can ('view-member')
 				<li>
