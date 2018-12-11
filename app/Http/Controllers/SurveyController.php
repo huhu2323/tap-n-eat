@@ -100,6 +100,5 @@ class SurveyController extends Controller
 		{
 			return "false";
 		}
-		//asdas
 	}
 }
