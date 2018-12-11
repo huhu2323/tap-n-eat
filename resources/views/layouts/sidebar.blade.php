@@ -32,6 +32,8 @@
 							@can ('view-product')
 							<li><a href="{{ route('product.index') }}"><i class="icon-submenu lnr lnr-dinner"></i> Products</a></li>
 							@endcan
+							<li><a href="{{ route('menu.index') }}"><i class="lnr lnr-menu"></i> Menu</a></li>
+							<li><a href="{{ route('inventory.index') }}"><i class="lnr lnr-layers"></i>Inventory</a></li>
 						</ul>
 					</div>
 				</li>

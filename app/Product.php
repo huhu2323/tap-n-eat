@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Category;
+use App\Inventory;
 use App\Rating;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,6 +16,12 @@ class Product extends Model
     public function category()
     {
     	return $this->belongsTo(Category::class);
+    }
+
+
+    public function inventory()
+    {
+        return $this->hasOne(Inventory::class);
     }
 
     public function ratings()

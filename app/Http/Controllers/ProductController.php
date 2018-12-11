@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -111,6 +112,12 @@ class ProductController extends Controller
                 if ($product->save())
                 {
                     $file->move('assets/img/product_img', $fileName);
+                    $inventory = new Inventory();
+                    $inventory->product_id = $product->id;
+                    $inventory->stock = 0;
+                    $inventory->cycle = "manual";
+                    $inventory->stock_per_cycle = null;
+                    $inventory->save();
                 }
             }
 
@@ -139,6 +146,7 @@ class ProductController extends Controller
         }
         $product = Product::onlyTrashed()->find($id);
         if (!empty($product)) {
+            
             Session::flash( 'success', ['title' => 'Delete Successful!', 'msg' => $product->name.' was deleted!' ] );
             File::delete('assets/img/product_img/' . $product->image);
             $product->forceDelete();

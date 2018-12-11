@@ -91,7 +91,7 @@
 									@endphp
 								@empty
 									<tr>
-										<td colspan="2" class="text-center" style="font-size: 30px"> Oops! There's nothing here. </td>
+										<td colspan="3" class="text-center" style="font-size: 30px"> Oops! There's nothing here. </td>
 									</tr>
 								@endforelse
 							</tbody>
