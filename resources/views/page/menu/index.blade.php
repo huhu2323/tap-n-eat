@@ -3,7 +3,7 @@
 @section ('contents')
 	<div class="panel panel-headline">
 		<div class="panel-heading">
-			<h3 class="panel-title"><b>{{ isset($_GET['trashed']) ? 'Trashed ' : '' }}Products</b></h3>
+			<h3 class="panel-title"><b>{{ isset($_GET['trashed']) ? 'Trashed ' : '' }}Menu</b></h3>
 			<p class="panel-subtitle">Date: {{ \Carbon\Carbon::today()->toFormattedDateString() }}</p>
 		</div>
 		<div class="row">
@@ -27,15 +27,6 @@
 							@endif
 						</ul>
 					</div>
-					@if (!isset($_GET['trashed']))
-						<div class="form-group">
-							<a href="{{ route('product.index').'?trashed=1' }}" class="trashed"><span class="badge">{{ $deletedProducts }}</span> <i class="fa fa-trash"></i> Trashed </a>
-						</div>
-					@else
-						<div class="form-group">
-							<a href="{{ route('product.index') }}" class="trashed"><i class="lnr lnr-chevron-left"></i> Back </a>
-						</div>
-					@endif
 					<div class="form form-inline">
 					{!! Form::open(['method' => 'get', 'style' => 'display: inline;']) !!}
 						@if (isset($_GET['trashed']))

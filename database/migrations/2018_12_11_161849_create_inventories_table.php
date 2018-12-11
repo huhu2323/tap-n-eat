@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupportsTable extends Migration
+class CreateInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSupportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('supports', function (Blueprint $table) {
+        Schema::create('inventories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user');
-            $table->boolean('new');
-            $table->integer('table_number');
-            $table->string('message');
+            $table->integer('product_id');
+            $table->integer('stock');
+            $table->enum('cycle', ['manual', 'daily', 'weekly', 'monthly']);
+            $table->integer('stock_per_cycle')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSupportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supports');
+        Schema::dropIfExists('inventories');
     }
 }

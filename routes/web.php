@@ -127,3 +127,12 @@ Route::group(['prefix' => 'survey', 'middleware' => 'auth' , 'as' => 'survey.'],
 	Route::post('{survey}/edit', 'SurveyController@storeEdit')->name('edit');
 	Route::get('{survey}/destroy', 'SurveyController@destroy')->name('destroy');
 });
+
+Route::group(['prefix' => 'menu', 'middleware' => 'auth' , 'as' => 'menu.'], function() {
+	Route::get('/', 'MenuController@index')->name('index');
+});
+
+Route::group(['prefix' => 'inventory', 'middleware' => 'auth' , 'as' => 'inventory.'], function() {
+	Route::get('/', 'InventoryController@index')->name('index');
+	Route::get('/setstock', 'InventoryController@edit')->name('edit');
+});
