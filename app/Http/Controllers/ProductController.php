@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Menu;
 use App\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -117,7 +118,22 @@ class ProductController extends Controller
                     $inventory->stock = 0;
                     $inventory->cycle = "manual";
                     $inventory->stock_per_cycle = null;
-                    $inventory->save();
+                    $menu = new Menu();
+                    $menu->product_id = $product->id;
+                    $menu->day = $request->available_on;
+                    if (strtolower(\Carbon\Carbon::today()->format('l')) == $request->available_on)
+                    {
+                        $menu->available = true;
+                    }
+                    else
+                    {
+                        $menu->available = false;
+                    }
+                    
+                    if (!$inventory->save() || !$menu->save())
+                    {
+                        return 'error in saving';
+                    }
                 }
             }
 

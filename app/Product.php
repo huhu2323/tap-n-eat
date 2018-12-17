@@ -5,6 +5,7 @@ namespace App;
 use App\Category;
 use App\Inventory;
 use App\Rating;
+use App\Menu;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -37,5 +38,10 @@ class Product extends Model
     public function ratingOnly()
     {
         return $this->hasMany(Rating::class)->latest()->pluck('rate');
+    }
+
+    public function menu()
+    {
+        return $this->hasOne(Menu::class);
     }
 }

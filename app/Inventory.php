@@ -11,4 +11,22 @@ class Inventory extends Model
     {
     	return $this->belongsTo(Product::class);
     }
+
+    public function getStock()
+    {
+    	if (!$this->stock)
+    	{
+    		return "Out of stock";
+    	}
+    	return $this->stock;
+    }
+
+    public function getStockPerCycle()
+    {
+    	if (!$this->stock_per_cycle)
+    	{
+    		return "Not set";
+    	}
+    	return $this->stock_per_cycle;
+    }
 }

@@ -24,8 +24,6 @@ Route::group(['prefix' => 'pos', 'middleware' => 'auth' , 'as' => 'pos.'], funct
 	Route::get('/', 'PosController@index')->name('index');
 });
 
-
-
 Route::group(['prefix' => 'report', 'middleware' => 'auth' , 'as' => 'report.'], function() {
 	Route::get('/', 'ReportController@index')->name('index');
 });
@@ -134,5 +132,6 @@ Route::group(['prefix' => 'menu', 'middleware' => 'auth' , 'as' => 'menu.'], fun
 
 Route::group(['prefix' => 'inventory', 'middleware' => 'auth' , 'as' => 'inventory.'], function() {
 	Route::get('/', 'InventoryController@index')->name('index');
-	Route::get('/setstock', 'InventoryController@edit')->name('edit');
+	Route::get('{product}/edit', 'InventoryController@edit')->name('edit');
+	Route::post('{product}/edit', 'InventoryController@storeEdit')->name('edit');
 });

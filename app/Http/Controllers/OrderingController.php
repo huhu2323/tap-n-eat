@@ -98,9 +98,27 @@ class OrderingController extends Controller
 	public function products(Request $request)
 	{
 		$prods = Product::latest()
+			->whereHas('menu', function ($query) {
+				$query->where('available', true);
+			})
+			->with('inventory')
 			->with('category')
 			->get();
-		return response()->json($prods);
+		if ($prods->count())
+		{
+			return response()->json([
+				'status' => true,
+				'data' => $prods
+			], 200);
+		}
+		else
+		{
+			return response()->json([
+				'status' => false,
+				'data' => $prods
+			], 404);
+		}
+		
 	}
 
 	public function csrf()

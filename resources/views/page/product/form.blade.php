@@ -56,6 +56,19 @@
 				</div>
 				<div class="clearfix"></div>
 				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
+							<label for="category" >Available on: </label>
+							<div class="input-group">
+								<label for="available_on" class="input-group-addon"><i class="fa fa-calendar"></i></label>
+								{!! Form::select('available_on', ['everyday' => 'Everyday', 'sunday' => 'Sunday', 'monday' => 'Monday', 'tuesday' => 'Tuesday', 'wednesday' => 'Wednesday', 'thursday' => 'Thursday', 'friday' => 'Friday', 'saturday' => 'Saturday'], null,['class' => 'form-control', 'id' => 'available_on']) !!}
+							</div>
+							{!! $errors->has('category') ? '<span class="label label-danger">'.$errors->first('category').'</span>' : '' !!}
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
 							<label for="decription">Description: </label>

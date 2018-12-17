@@ -21,6 +21,15 @@ Route::middleware('auth:api')->group(function() {
    
 });
 
+
+
+Route::get('/example/{api_token}/{name}', function (Request $request) {
+    return response()->json([
+        'name' => $request->name,
+    ]);
+})->middleware('api_token');
+
+
 Route::get('products', 'OrderingController@products');
 Route::get('{category}/products', 'OrderingController@filteredProducts');
 Route::get('productscategories/{id}', 'OrderingController@productsCategories');
@@ -40,6 +49,7 @@ Route::get('{product}/calculate', 'RatingController@calculateRating');
 
 
 Route::post('login','MenuController@login');
+Route::post('{product}/set', 'MenuController@set');
 
 Route::post('sendsupport', 'SupportController@send');
 Route::get('fetchsupport', 'SupportController@fetch');

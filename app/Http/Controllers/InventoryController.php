@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Session;
 
 class InventoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         if (!Auth::user()->can('view-product'))
@@ -46,7 +52,32 @@ class InventoryController extends Controller
         return view ('page.inventory.index', compact('products', 'categories'));
     }
 
-public function edit()
+    public function edit(Product $product)
     {
-        return view ('page.inventory.edit');
-    }}
+        return view('page.inventory.edit', compact('product'));
+    }
+
+    public function storeEdit(Request $request, Product $product)
+    {
+        $inventory = $product->inventory;
+        if ($request->cycle)
+        {
+            if ($request->cycle == 'manual')
+            {
+                $inventory->cycle = $request->cycle;
+                $inventory->stock = $request->stock;
+                $inventory->stock_per_cycle = null;
+                $inventory->save();
+            }
+            else
+            {
+                $inventory->cycle = $request->cycle;
+                $inventory->stock = $request->stock;
+                $inventory->stock_per_cycle = $request->stock_per_cycle;
+                $inventory->save();
+            }
+        }
+        Session::flash('success', ['title' => 'Success!', 'msg' => 'Product was saved!']);
+        return redirect()->route('inventory.index');
+    }
+}

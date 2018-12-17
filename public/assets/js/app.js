@@ -467,4 +467,34 @@ $(document).ready( function() {
 		}
 		console.log($(this).val() - $('#total-value').val());
 	});
+
+	$('.set-stock').on('click', function() {
+		var id = $('.selected-input').attr('data-id');
+		console.log(id);
+		console.log($('.selected-input').attr('data-link') + "/" + id + "/edit");
+		window.location = $('.selected-input').attr('data-link') + "/" + $('.selected-input').attr('data-module') + "/" + id + "/edit";
+	});
+
+	$('#cycle').on('change', function() {
+		if ($(this).val() == 'manual' || $(this).val() == null)
+		{
+			$('#stock_per_cycle').prop('disabled', true);
+		}
+		else
+		{
+			$('#stock_per_cycle').prop('disabled', false);
+		}
+	});
+
+	$('.miguel').on('click', function() {
+		var id = $(this).attr('data-id');
+		$.post($(this).attr('data-link') + '/api/' + id + '/set', function(data) {
+			console.log('wow');
+		}).done(function(e) {
+		    console.log(e);
+		    window.location.reload();
+	  	}).fail(function(e) {
+			alert(e);
+		});
+	});
 });
